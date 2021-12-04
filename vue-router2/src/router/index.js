@@ -3,6 +3,7 @@ import Home from "../views/Home.vue";
 import About from "../views/About.vue";
 import Books from "../views/books/Books.vue";
 import BookDetails from "../views/books/BookDetails.vue";
+import NotFound from "../components/NotFound.vue";
 
 const routes = [
   {
@@ -25,6 +26,11 @@ const routes = [
     name: "BookDetails",
     component: BookDetails,
     props: true,
+  },
+  {
+    path: "/:catchAll(.*)",
+    name: "NotFound",
+    component: NotFound,
   },
 ];
 
