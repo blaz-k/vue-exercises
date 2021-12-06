@@ -8,6 +8,14 @@ const store = createStore({
       counter: 15,
     };
   },
+  mutations: {
+    addToCounter(state, payload) {
+      state.counter = state.counter + payload;
+    },
+    subtractFromCounter(state, payload) {
+      state.counter = state.counter - payload;
+    },
+  },
 });
 
 const app = createApp(App);
