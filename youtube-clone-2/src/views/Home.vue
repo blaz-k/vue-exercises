@@ -1,18 +1,23 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <div class="home">{{ name }}, allvideo IDS: {{ allVideosIds }}</div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+
+import { computed, ref } from "vue";
+import { useStore } from "vuex";
 
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
-}
+  name: "Home",
+  setup() {
+    const name = ref("blaz");
+    // STORE:
+    const store = useStore();
+    // To get state from vuex:
+    const allVideosIds = computed(() => store.state.allVideosIds);
+
+    return { name, allVideosIds };
+  },
+};
 </script>
