@@ -1,23 +1,30 @@
 <template>
-  <div class="home">{{ name }}, allvideo IDS: {{ allVideosIds }}</div>
+  <div>
+    <div class="home">allVideo IDS: {{ allVideosIds }}</div>
+    <div class="row g-4 row-cols-1 row-cols-sm-4">
+      <div v-for="VIds in allVideosIds" :key="VIds">
+        <ShowVideo :showVideoId="VIds" />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 // @ is an alias to /src
 
-import { computed, ref } from "vue";
+import { computed } from "vue";
 import { useStore } from "vuex";
+import ShowVideo from "../components/ShowVideo.vue";
 
 export default {
   name: "Home",
   setup() {
-    const name = ref("blaz");
     // STORE:
     const store = useStore();
-    // To get state from vuex:
+    // Get state from Vuex:
     const allVideosIds = computed(() => store.state.allVideosIds);
-
-    return { name, allVideosIds };
+    return { allVideosIds };
   },
+  components: { ShowVideo },
 };
 </script>

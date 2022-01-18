@@ -1,0 +1,93 @@
+<template>
+  <div>
+    <div>
+      <div>{{}}</div>
+      <!-- <router-link> -->
+      <!-- <div v-if="this.sidebar" id="sidebar">
+          <div class="row g-0">
+            <div class="col-lg-6">
+              <img
+                :src="videoData.items[0].snippet.thumbnails.maxres.url"
+                class="img-fluid rounded-start"
+                alt="..."
+              />
+              <p class="card-text">
+                <span class="cardName">
+                  <p>views Views</p>
+                  <p>correct data</p></span
+                >
+              </p>
+            </div>
+            <div class="col-lg-6 bottom">
+              <div class="card-body">
+                <div class="card-title">
+                  title substring
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+      <div>
+        <div class="my-card">
+          <div class="card" style="">
+            <div class="card h-100">
+              <img src="" class="card-img-top my-img" alt="..." />
+
+              <div class="card-body">
+                <h5 class="card-title">title: {{ videoData }}</h5>
+                <p class="card-text">
+                  <span class="cardName">
+                    <p>viewCount Views</p>
+                    <p>data changed</p></span
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- </router-link> -->
+    </div>
+  </div>
+</template>
+
+<script>
+import { onMounted, ref } from "vue";
+import axios from "axios";
+
+export default {
+  name: "ShowVideo",
+  props: ["showVideoId"],
+
+  setup(props) {
+    const url = ref("https://www.googleapis.com/youtube/v3/videos?id=");
+    const apiKey = ref("AIzaSyCrq46vpCpa50Z4t-GQ_GNuqZHIeyZWg14");
+    const endUrl = ref("&part=snippet,contentDetails,statistics,status");
+    const videoData = ref(null);
+    const response = ref(null);
+
+    // console.log(url.value);
+    // console.log(apiKey.value);
+    // console.log(endUrl.value);
+    // console.log(props);
+    // console.log(props.showVideoId);
+
+    onMounted(async () => {
+      response.value = await axios
+        .get(
+          `${url.value}${props.showVideoId}&key=${apiKey.value}${endUrl.value}`
+        )
+        .then((response) => {
+          videoData.value = response.data;
+        });
+      //   console.log(response.value);
+      console.log(videoData.value.items[0].snippet.localized.title);
+    });
+
+    return { url, apiKey, endUrl, videoData };
+  },
+};
+</script>
+
+<style></style>
