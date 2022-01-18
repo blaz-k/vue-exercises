@@ -1,8 +1,10 @@
 <template>
   <div v-if="videoData">
     <div>
-      <!-- <router-link> -->
-      <!-- <div v-if="this.sidebar" id="sidebar">
+      <router-link
+        :to="{ name: 'ChosenVideo', params: { detailsId: showVideoId } }"
+      >
+        <!-- <div v-if="this.sidebar" id="sidebar">
           <div class="row g-0">
             <div class="col-lg-6">
               <img
@@ -27,34 +29,37 @@
           </div>
         </div> -->
 
-      <div>
-        <div class="my-card">
-          <div class="card" style="">
-            <div class="card h-100">
-              <img
-                :src="videoData.items[0].snippet.thumbnails.maxres.url"
-                class="card-img-top my-img"
-                alt="..."
-              />
+        <div>
+          <div class="my-card">
+            <div class="card" style="">
+              <div class="card h-100">
+                <img
+                  :src="videoData.items[0].snippet.thumbnails.maxres.url"
+                  class="card-img-top my-img"
+                  alt="..."
+                />
 
-              <div class="card-body">
-                <h5 class="card-title">
-                  {{
-                    videoData.items[0].snippet.localized.title.substring(0, 45)
-                  }}
-                </h5>
-                <p class="card-text">
-                  <span class="cardName">
-                    <p>{{ videoData.items[0].statistics.viewCount }} views</p>
-                    <p>data changed</p></span
-                  >
-                </p>
+                <div class="card-body">
+                  <h5 class="card-title">
+                    {{
+                      videoData.items[0].snippet.localized.title.substring(
+                        0,
+                        45
+                      )
+                    }}
+                  </h5>
+                  <p class="card-text">
+                    <span class="cardName">
+                      <p>{{ videoData.items[0].statistics.viewCount }} views</p>
+                      <p>data changed</p></span
+                    >
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <!-- </router-link> -->
+      </router-link>
     </div>
   </div>
 </template>
@@ -72,24 +77,13 @@ export default {
     const apiKey = ref("AIzaSyCrq46vpCpa50Z4t-GQ_GNuqZHIeyZWg14");
     const endUrl = ref("&part=snippet,contentDetails,statistics,status");
     const videoData = ref(null);
-    const response = ref(null);
-
-    // console.log(url.value);
-    // console.log(apiKey.value);
-    // console.log(endUrl.value);
-    // console.log(props);
-    // console.log(props.showVideoId);
 
     onMounted(async () => {
-      response.value = await axios
-        .get(
-          `${url.value}${props.showVideoId}&key=${apiKey.value}${endUrl.value}`
-        )
-        .then((response) => {
-          videoData.value = response.data;
-        });
-      //   console.log(response.value);
-      console.log(videoData.value.items[0].snippet.localized.title);
+      const result = await axios.get(
+        `${url.value}${props.showVideoId}&key=${apiKey.value}${endUrl.value}`
+      );
+      videoData.value = result.data;
+      console.log(videoData.value);
     });
 
     return { url, apiKey, endUrl, videoData };
