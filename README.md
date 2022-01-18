@@ -5,3 +5,4 @@
 - [Vue-with-vuex-exo](https://github.com/blaz-k/vue-exercises/tree/main/vue-with-vuex-exo#readme) : exercise from youtube on my own
 - [Web-form](https://github.com/blaz-k/vue-exercises/tree/main/web-form#readme) : exercise from youtube
 - [Dojo-blog](https://github.com/blaz-k/vue-exercises/tree/main/dojo-blog#readme) : exercise from youtube using `COMPOSITION API` for the first time
+- [Youtube-clone-2](https://github.com/blaz-k/vue-exercises/tree/main/youtube-clone-2#readme) : same project as [Youtube-clone-vue](https://github.com/blaz-k/youtube-clone-vue#readme) but with `COMPOSITION API`
