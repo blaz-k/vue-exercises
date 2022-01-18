@@ -1,6 +1,5 @@
 <template>
   <div>
-    <div class="home">allVideo IDS: {{ allVideosIds }}</div>
     <div class="row g-4 row-cols-1 row-cols-sm-4">
       <div v-for="VIds in allVideosIds" :key="VIds">
         <ShowVideo :showVideoId="VIds" />

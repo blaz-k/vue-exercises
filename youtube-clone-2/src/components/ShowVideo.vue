@@ -1,7 +1,6 @@
 <template>
-  <div>
+  <div v-if="videoData">
     <div>
-      <div>{{}}</div>
       <!-- <router-link> -->
       <!-- <div v-if="this.sidebar" id="sidebar">
           <div class="row g-0">
@@ -32,13 +31,21 @@
         <div class="my-card">
           <div class="card" style="">
             <div class="card h-100">
-              <img src="" class="card-img-top my-img" alt="..." />
+              <img
+                :src="videoData.items[0].snippet.thumbnails.maxres.url"
+                class="card-img-top my-img"
+                alt="..."
+              />
 
               <div class="card-body">
-                <h5 class="card-title">title: {{ videoData }}</h5>
+                <h5 class="card-title">
+                  {{
+                    videoData.items[0].snippet.localized.title.substring(0, 45)
+                  }}
+                </h5>
                 <p class="card-text">
                   <span class="cardName">
-                    <p>viewCount Views</p>
+                    <p>{{ videoData.items[0].statistics.viewCount }} views</p>
                     <p>data changed</p></span
                   >
                 </p>
