@@ -7,7 +7,7 @@
 <script>
 export default {
   name: "ChosenVideo",
-  props: ["detailsIs"],
+  props: ["detailsId"],
 };
 </script>
 
